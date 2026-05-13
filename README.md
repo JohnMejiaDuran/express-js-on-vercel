@@ -1,31 +1,25 @@
-# Express.js on Vercel
+# Express.js on Cloudflare Workers
 
-Basic Express.js + Vercel example that serves html content, JSON data and simulates an api route.
+Basic Express.js app configured for Cloudflare Workers using `nodejs_compat` and `cloudflare:node`.
 
 ## How to Use
 
-You can choose from one of the following two methods to use this repository:
-
-### One-Click Deploy
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/express&project-name=express&repository-name=express)
-
-### Clone and Deploy
-
 ```bash
-git clone https://github.com/vercel/examples/tree/main/solutions/express
+pnpm install
+pnpm dev
 ```
 
-Install the Vercel CLI:
+Local development runs at `http://localhost:8787`.
+
+## Deploy
 
 ```bash
-npm i -g vercel
+pnpm deploy
 ```
 
-Then run the app at the root of the repository:
+## Available routes
 
-```bash
-vercel dev
-```
+- `/` - HTML home page
+- `/about` - HTML about page
+- `/api-data` - sample JSON endpoint
+- `/healthz` - health check

@@ -1,11 +1,9 @@
+import { httpServerHandler } from 'cloudflare:node'
 import express from 'express'
-import path from 'path'
-import { fileURLToPath } from 'url'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
 
 const app = express()
+
+app.use(express.json())
 
 // Home route - HTML
 app.get('/', (req, res) => {
@@ -14,8 +12,12 @@ app.get('/', (req, res) => {
     <html>
       <head>
         <meta charset="utf-8"/>
-        <title>Express on Vercel</title>
-        <link rel="stylesheet" href="/style.css" />
+          <title>Express on Cloudflare Workers</title>
+          <style>
+            body { font-family: system-ui, sans-serif; max-width: 48rem; margin: 4rem auto; padding: 0 1rem; }
+            nav { display: flex; gap: 1rem; margin-bottom: 2rem; }
+            a { color: #f6821f; }
+          </style>
       </head>
       <body>
         <nav>
@@ -24,16 +26,28 @@ app.get('/', (req, res) => {
           <a href="/api-data">API Data</a>
           <a href="/healthz">Health</a>
         </nav>
-        <h1>Welcome to Express on Vercel 🚀</h1>
-        <p>This is a minimal example without a database or forms.</p>
-        <img src="/logo.png" alt="Logo" width="120" />
+        <h1>Welcome to Express on Cloudflare Workers 🚀</h1>
+        <p>This is a minimal Express app running on the Workers runtime.</p>
       </body>
     </html>
   `)
 })
 
 app.get('/about', function (req, res) {
-  res.sendFile(path.join(__dirname, '..', 'components', 'about.htm'))
+  res.type('html').send(`
+    <!doctype html>
+    <html>
+      <head>
+        <meta charset="utf-8"/>
+        <title>About</title>
+      </head>
+      <body>
+        <h1>About</h1>
+        <p>Express served from Cloudflare Workers.</p>
+        <a href="/">Back home</a>
+      </body>
+    </html>
+  `)
 })
 
 // Example API endpoint - JSON
@@ -49,4 +63,6 @@ app.get('/healthz', (req, res) => {
   res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() })
 })
 
-export default app
+app.listen(3000)
+
+export default httpServerHandler({ port: 3000 })
