@@ -1,4 +1,4 @@
-name = "express-js-on-workers"
+name = "express-js-on-vercel"
 main = "src/index.ts"
 compatibility_date = "2025-09-15"
-compatibility_flags = [ "nodejs_compat" ]
+compatibility_flags = ["nodejs_compat"]
