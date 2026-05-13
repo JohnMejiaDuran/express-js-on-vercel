@@ -3,8 +3,6 @@ import express from 'express'
 
 const app = express()
 
-app.use(express.json())
-
 // Home route - HTML
 app.get('/', (req, res) => {
   res.type('html').send(`
