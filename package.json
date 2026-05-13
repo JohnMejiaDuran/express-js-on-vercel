@@ -1,5 +1,5 @@
 {
-  "name": "express",
+  "name": "express-js-on-vercel",
   "version": "1.0.0",
   "description": "Minimal Express.js app deployable to Cloudflare Workers",
   "type": "module",
@@ -22,9 +22,7 @@
   },
   "pnpm": {
     "packageExtensions": {
-      "iconv-lite@0.4.24": {
-        "browser": {}
-      }
+      "iconv-lite@0.4.24": {}
     }
-}
+  }
 }
